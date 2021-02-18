@@ -45,8 +45,81 @@ from .copy import *
 
 标签样式 = "QLabel{font-size:12px;color:white}"
 
-下拉框样式 = "QComboBox{font-size:12px;color:white;background-color:rgba(70,134,197,0.8);border:1px;border-radius:5px;} QComboBox:hover{background-color:rgba(65,105,225,0.8)} QComboBox QAbstractItemView::item {height: 18px;}"
+下拉框样式 = '''QComboBox{font-size:12px;color:white;background-color:rgba(70,134,197,0.8);border:1px;border-radius:5px;} QComboBox:hover{background-color:rgba(65,105,225,0.8)} QComboBox QAbstractItemView::item {height: 18px;background-color:white} 
+QComboBox QAbstractItemView::item:hover,QComboBox QAbstractItemView::item:focus {background-color:rgba(65,105,225,0.5);color:black}
+QComboBox QScrollBar{
+    background: white !important
+}
+QComboBox QScrollBar::handle{
+    background: rgb(220,220,220) !important
+}
+'''
 不可选择下拉框样式 = "QComboBox{font-size:12px;color:white;background-color:grey;border:1px;border-radius:5px;}  QComboBox QAbstractItemView::item {height: 18px;}"
+滚动条样式 = '''/*QScrollBar Style*/
+/*纵向滚动条*/
+QScrollBar {
+    background: transparent; /*背景透明*/
+    width: 10px; /*宽度*/
+    margin: 0px 0px 0px 0px; /**/
+    padding-top: 5px; /*距离上面12px*/
+    padding-bottom: 5px; /*距离底部12px*/
+}
+/*纵向滚动条上面的滑块*/
+QScrollBar::handle {
+    background: rgba(245,245,245,50);
+    width: 10px;
+    border-radius: 5px;
+    border: none;
+}
+/*纵向滚动条下部分块*/
+QScrollBar::add-page:vertical {
+    width: 10px;
+    background: transparent;
+}
+/*横向滚动条后面部分块*/
+QScrollBar::add-page:horizontal {
+    height: 10px;
+    background: transparent;
+}
+/*纵向滚动条上面部分块*/
+QScrollBar::sub-page:vertical {
+    width: 10px;
+    background: transparent;
+}
+/*横向滚动条左部分块*/
+QScrollBar::sub-page:horizontal {
+    height: 10px;
+    background: transparent;
+}
+/*纵向滚动条顶部三角形位置*/
+QScrollBar::sub-line:vertical {
+    height: 12px;
+    width: 10px;
+    background: transparent;
+    subcontrol-position: top;
+}
+/*横向滚动条左侧三角形位置*/
+QScrollBar::sub-line:horizontal {
+    height: 10px;
+    width: 12px;
+    background: transparent;
+    subcontrol-position: left;
+}
+/*纵向滚动条下面三角形部分*/
+QScrollBar::add-line:vertical {
+    height: 12px;
+    width: 10px;
+    background: transparent;
+    subcontrol-position: bottom;
+}
+/*横向滚动条右边的三角形部分*/
+QScrollBar::add-line:horizontal {
+    height: 10px;
+    width: 12px;
+    background: transparent;
+    subcontrol-position: right;
+}
+'''
 
 class MyQComboBox(QComboBox):
     def __init__(self, win):

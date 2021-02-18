@@ -22,6 +22,7 @@ import subprocess
 import base64
 
 主进程PID = ''
+偏移量 = 27
 
 if __name__ == '__main__':
     multiprocessing.freeze_support()
@@ -136,24 +137,24 @@ class 选择窗口(QMainWindow):
             else:
                 img_box.setPixmap(self.char_img[i])
             img_box.resize(121, 90)
-            img_box.move(120 + (count % 5) * 125, 10 + int(count / 5) * 100)
+            img_box.move(100+偏移量 + (count % 5) * 125, 10 + int(count / 5) * 100)
             
             if i  < 75:
                 if 角色列表[i]["类名"] != '空':
                     img_box_2 = QLabel(self.topFiller)
                     img_box_2.setPixmap(self.family_img[16])
                     img_box_2.resize(121, 90)
-                    img_box_2.move(120 + (count % 5) * 125, 10 + int(count / 5) * 100)
+                    img_box_2.move(100+偏移量 + (count % 5) * 125, 10 + int(count / 5) * 100)
                     txt_box = QLabel(self.topFiller)
                     txt_box.setStyleSheet('QLabel{font-size:13px;color:rgb(175,148,89)}')
                     txt_box.setText(角色列表[i]["显示名称"])
                     txt_box.resize(121, 24)
                     txt_box.setAlignment(Qt.AlignCenter)
-                    txt_box.move(120 + (count % 5) * 125, 76 + int(count / 5) * 100)
+                    txt_box.move(100+偏移量 + (count % 5) * 125, 76 + int(count / 5) * 100)
                     butten = QPushButton(self.topFiller)
                     butten.setStyleSheet(按钮样式2)
                     butten.resize(121, 90)
-                    butten.move(120 + (count % 5) * 125, 10 + int(count / 5) * 100)
+                    butten.move(100+偏移量 + (count % 5) * 125, 10 + int(count / 5) * 100)
                     butten.clicked.connect(lambda state, index = 角色列表[i]: self.职业版本判断(index))
                     temp = '<b>作者：<font color="#C66211">'+ 角色列表[i]["作者"] +'</font>'
                     butten.setToolTip(temp)
@@ -161,7 +162,7 @@ class 选择窗口(QMainWindow):
                 img_box_2 = QLabel(self.topFiller)
                 img_box_2.setStyleSheet("QLabel{background-color:rgba(0,0,0,0.8)}")
                 img_box_2.resize(121, 90)
-                img_box_2.move(120 + (count % 5) * 125, 10 + int(count / 5) * 100)
+                img_box_2.move(100+偏移量 + (count % 5) * 125, 10 + int(count / 5) * 100)
             count += 1
 
         count = 0
@@ -176,12 +177,12 @@ class 选择窗口(QMainWindow):
                 img_box_2.setPixmap(self.family_img[15])
                 img_box_2.resize(94, 90)
                 img_box_2.setAlignment(Qt.AlignCenter)
-                img_box_2.move(15, 10 + count* 100)
+                img_box_2.move(偏移量, 10 + count* 100)
             img_box = QLabel(self.topFiller)
             img_box.setPixmap(self.family_img[i])
             img_box.resize(94, 90)
             img_box.setAlignment(Qt.AlignCenter)
-            img_box.move(15, 10 + count* 100)
+            img_box.move(偏移量, 10 + count* 100)
             count += 1
 
         # 名称 = ['检查更新', '查看源码', '使用说明', '问题反馈']
@@ -207,7 +208,7 @@ class 选择窗口(QMainWindow):
 
         butten=QtWidgets.QPushButton('首页\n手册|日志|源码', self.topFiller)
         butten.clicked.connect(lambda state, index = count: self.打开链接(['http://dnf.17173.com/jsq/?khd']))
-        butten.move(120 + 4 * 125, 10 + (count + 1) * 100)    
+        butten.move(100+偏移量 + 4 * 125, 10 + (count + 1) * 100)    
         butten.setStyleSheet(按钮样式3)
         butten.resize(121,90)
 
@@ -215,7 +216,7 @@ class 选择窗口(QMainWindow):
     
         butten=QtWidgets.QPushButton('检查更新', self.topFiller)
         butten.clicked.connect(lambda state, index = count: self.检查更新())
-        butten.move(120 + 4 * 125, 10 + (count + 1) * 100)    
+        butten.move(100+偏移量 + 4 * 125, 10 + (count + 1) * 100)    
         butten.setStyleSheet(按钮样式3)
         butten.resize(121,90)
 
@@ -238,27 +239,28 @@ class 选择窗口(QMainWindow):
 
         butten=QtWidgets.QPushButton('问题反馈', self.topFiller)
         butten.clicked.connect(lambda state, index = count: self.问题反馈())
-        butten.move(120 + 4 * 125, 10 + (count + 1) * 100)    
+        butten.move(100+偏移量 + 4 * 125, 10 + (count + 1) * 100)    
         butten.setStyleSheet(按钮样式3)
         butten.resize(121,90)
         count += 1
 
         butten=QtWidgets.QPushButton('打   赏', self.topFiller)
         butten.clicked.connect(lambda state , index = count:self.打赏())
-        butten.move(120 + 4 * 125, 10 + (count + 1) * 100)    
+        butten.move(100+偏移量 + 4 * 125, 10 + (count + 1) * 100)    
         butten.setStyleSheet(按钮样式3)
         butten.resize(121,90)
         count += 1
 
         butten=QtWidgets.QPushButton('', self.topFiller)
         butten.clicked.connect(lambda state, index = count: self.打开链接(['http://dnf.17173.com/?jsq']))
-        butten.move(120 + 4 * 125, 10 + (count + 1) * 100)    
+        butten.move(100+偏移量 + 4 * 125, 10 + (count + 1) * 100)    
         butten.setStyleSheet(按钮样式3)
         butten.resize(121,90)
         count += 1
 
         self.scroll = QScrollArea()
         self.scroll.setStyleSheet("QScrollArea {background-color:transparent}")
+        self.scroll.setStyleSheet(滚动条样式)
         self.scroll.viewport().setStyleSheet("background-color:transparent")
         self.scroll.setWidget(self.topFiller)
         self.vbox = QVBoxLayout()
