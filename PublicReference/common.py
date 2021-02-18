@@ -331,11 +331,17 @@ class 窗口(QWidget):
         self.stacked_layout = QStackedLayout(self.main_frame)
         
         self.main_frame1 = QMainWindow()
-        self.main_frame2 = QMainWindow()
+        self.main_frame1.setStyleSheet(滚动条样式)
+        self.main_frame2 = QWidget()
+        self.main_frame2.setStyleSheet(滚动条样式)
         self.main_frame3 = QMainWindow()
+        self.main_frame3.setStyleSheet(滚动条样式)
         self.main_frame4 = QMainWindow()
+        self.main_frame4.setStyleSheet(滚动条样式)
         self.main_frame5 = QMainWindow()
+        self.main_frame5.setStyleSheet(滚动条样式)
         self.main_frame6 = QMainWindow()
+        self.main_frame6.setStyleSheet(滚动条样式)
 
         self.界面1()
         self.界面2()
@@ -349,7 +355,17 @@ class 窗口(QWidget):
     def 布局界面(self):
         # 把布局界面放进去
         self.stacked_layout.addWidget(self.main_frame1)
-        self.stacked_layout.addWidget(self.main_frame2)
+        self.main_frame2.setMinimumSize(1120, self.窗口高度)
+        if self.窗口高度>680:
+            self.scroll = QScrollArea()
+            self.main_frame2.setMinimumSize(1100, self.窗口高度-20)
+            self.scroll.setWidget(self.main_frame2)
+            # self.scroll.setStyleSheet("QScrollArea {background-color:transparent}")
+            self.scroll.setStyleSheet(滚动条样式)
+            self.scroll.viewport().setStyleSheet("background-color:transparent")
+            self.stacked_layout.addWidget(self.scroll)
+        else:
+            self.stacked_layout.addWidget(self.main_frame2)
         self.stacked_layout.addWidget(self.main_frame3)
         self.stacked_layout.addWidget(self.main_frame4)
         if self.初始属性.职业分类 == '输出':
@@ -1576,7 +1592,8 @@ class 窗口(QWidget):
                 详情按钮.setStyleSheet(按钮样式+"QPushButton{font-size:14px}")
                 详情按钮.setToolTip('<font size="3" face="宋体">点击查看详情</font>')
         滚动排行.scroll = QScrollArea()
-        滚动排行.scroll.setStyleSheet("QScrollArea {background-color:transparent}")
+        # 滚动排行.scroll.setStyleSheet("QScrollArea {background-color:transparent}")
+        滚动排行.scroll.setStyleSheet(滚动条样式)
         滚动排行.scroll.viewport().setStyleSheet("background-color:transparent")
         滚动排行.scroll.setWidget(滚动排行.topFiller)
         滚动排行.vbox = QVBoxLayout()

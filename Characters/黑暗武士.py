@@ -1113,7 +1113,7 @@ class 黑暗武士(角色窗口):
 
         self.清空排列按钮 = QPushButton('清空排列', self.main_frame2)
         self.清空排列按钮.clicked.connect(lambda state: self.清空排列())
-        self.清空排列按钮.move(850, 630)
+        self.清空排列按钮.move(850, 400)
         self.清空排列按钮.resize(100, 20)
         self.清空排列按钮.setStyleSheet(按钮样式)
 
@@ -1123,7 +1123,7 @@ class 黑暗武士(角色窗口):
         self.护甲精通选择.addItem('重甲')
         self.护甲精通选择.addItem('板甲')
         self.护甲精通选择.resize(120,20)
-        self.护甲精通选择.move(720,630)
+        self.护甲精通选择.move(720,400)
 
     def 清空排列(self):
 

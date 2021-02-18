@@ -675,6 +675,7 @@ class 角色窗口(窗口):
        
     def 界面(self):
         self.setFixedSize(1120, 680)
+        self.窗口高度 = 680
         self.行高 = 30 
         self.输出背景图片 = QPixmap("./ResourceFiles/img/输出背景_BUFF.png")
         super().界面()
@@ -861,7 +862,7 @@ class 角色窗口(窗口):
 
        
         横坐标=395;纵坐标=20;行高=18
-        x=QLabel("护石(第一栏/上)：", self.main_frame2)
+        x=QLabel("护石Ⅰ：", self.main_frame2)
         x.move(横坐标,纵坐标-5)
         x.setStyleSheet(标签样式)
         纵坐标+=21
@@ -869,7 +870,7 @@ class 角色窗口(窗口):
         self.护石第一栏.resize(130, 行高)
         
         横坐标=565;纵坐标=20
-        x=QLabel("护石(第二栏/下)：", self.main_frame2)
+        x=QLabel("护石Ⅱ：", self.main_frame2)
         x.move(横坐标,纵坐标-5)
         x.setStyleSheet(标签样式)
         纵坐标+=21
@@ -877,7 +878,7 @@ class 角色窗口(窗口):
         self.护石第二栏.resize(130, 行高)
 
         横坐标=395;纵坐标=70;行高=18
-        x=QLabel("护石(第三栏/韩)：", self.main_frame2)
+        x=QLabel("护石Ⅲ：", self.main_frame2)
         x.move(横坐标,纵坐标-5)
         x.setStyleSheet(标签样式)
         纵坐标+=21

@@ -1521,7 +1521,7 @@ class 角色窗口(窗口):
             if i.是否有伤害 == 1:
                 count += 1
         self.窗口高度 = max(55 + 30 * count, 680)
-        self.setFixedSize(1120, self.窗口高度)
+        self.setFixedSize(1120, 680)
         self.输出背景图片 = QPixmap('./ResourceFiles/img/输出背景.png')
         super().界面()
 
@@ -1756,7 +1756,7 @@ class 角色窗口(窗口):
         counter=0
         for i in ["契约满级","等级调整"," TP等级","释放次数","宠物次数"]:
             x=QLabel(i, self.main_frame2)
-            x.move(横坐标+横坐标偏移量-30+50*counter,纵坐标)
+            x.move(横坐标+横坐标偏移量-30+50*counter,纵坐标+5)
             x.setStyleSheet(标签样式)
             counter+=1
         
@@ -1886,7 +1886,7 @@ class 角色窗口(窗口):
         
         横坐标=480;纵坐标=20;行高=18
         x=QLabel("护石Ⅰ", self.main_frame2)
-        x.move(横坐标,纵坐标 - 6)
+        x.move(横坐标,纵坐标)
         x.setStyleSheet(标签样式)
         y = MyQComboBox(self.main_frame2)
         y.move(横坐标 + 65,纵坐标)
@@ -1900,7 +1900,7 @@ class 角色窗口(窗口):
         for i in range(0,3):
             tempstr='符文'+str(i+1) + '选择: '
             x=QLabel(tempstr, self.main_frame2)
-            x.move(横坐标,纵坐标-5)
+            x.move(横坐标,纵坐标)
             x.setStyleSheet(标签样式)
             纵坐标+=21
             self.符文[i].move(横坐标,纵坐标)
@@ -1914,7 +1914,7 @@ class 角色窗口(窗口):
         
         横坐标=650;纵坐标=20
         x=QLabel("护石Ⅱ", self.main_frame2)
-        x.move(横坐标,纵坐标 - 6)
+        x.move(横坐标,纵坐标)
         x.setStyleSheet(标签样式)
         y = MyQComboBox(self.main_frame2)
         y.move(横坐标 + 65,纵坐标)
@@ -1928,7 +1928,7 @@ class 角色窗口(窗口):
         for i in range(3,6):
             tempstr='符文'+str(i+1) + '选择: '
             x=QLabel(tempstr, self.main_frame2)
-            x.move(横坐标,纵坐标-5)
+            x.move(横坐标,纵坐标)
             x.setStyleSheet(标签样式)
             纵坐标+=21
             self.符文[i].move(横坐标,纵坐标)
@@ -1940,7 +1940,7 @@ class 角色窗口(窗口):
 
         横坐标=820;纵坐标=20
         x=QLabel("护石Ⅲ", self.main_frame2)
-        x.move(横坐标,纵坐标 - 6)
+        x.move(横坐标,纵坐标)
         x.setStyleSheet(标签样式)
         y = MyQComboBox(self.main_frame2)
         y.move(横坐标 + 65,纵坐标)
@@ -1954,7 +1954,7 @@ class 角色窗口(窗口):
         for i in range(6,9):
             tempstr='符文'+str(i+1) + '选择: '
             x=QLabel(tempstr, self.main_frame2)
-            x.move(横坐标,纵坐标-5)
+            x.move(横坐标,纵坐标)
             x.setStyleSheet(标签样式)
             纵坐标+=21
             self.符文[i].move(横坐标,纵坐标)
