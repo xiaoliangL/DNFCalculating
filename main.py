@@ -374,13 +374,32 @@ class 选择窗口(QMainWindow):
 
     def 自动更新(self,fileURL):
         path  = os.getcwd()+"/download"
-        lzy = LanZouCloud()
-        lzy.down_file_by_url(fileURL,'', path , callback=self.show_progress, downloaded_handler=self.after_downloaded)
+        self.遮罩=QLabel(self)
+        self.遮罩.setStyleSheet("QLabel{background-color:rgba(0,0,0,0.8)}")
+        self.遮罩.resize(805,630)
+        self.遮罩.move(0,0)
+        self.遮罩.show()
+        self.pbar = QProgressBar(self)
+        self.pbar.setGeometry(30, 40, 200, 25) 
+        self.pbar.move(325,300)
+        self.label = QLabel(self)
+        self.label.setText("正在下载...")
+        self.label.move(370,297)
+        self.pbar.show()      
+        self.label.show() 
+        try:
+            lzy = LanZouCloud()
+            lzy.down_file_by_url(fileURL,'', path , callback=self.show_progress, downloaded_handler=self.after_downloaded)
+        except Exception as error:
+            self.遮罩.hide()
+            self.pbar.hide()
+            self.label.hide()
 
     def after_downloaded(self,file_path):
         path = os.getcwd()
         zip_file = zipfile.ZipFile(file_path)
         zip_list = zip_file.namelist() # 得到压缩包里所有文件
+        self.label.setText("正在解压...")
         for f in zip_list:
             if not f.endswith('desktop.ini'):
                 zip_file.extract(f, path)
@@ -388,6 +407,9 @@ class 选择窗口(QMainWindow):
                 # 循环解压文件到指定目录
         zip_file.close()
         shutil.rmtree('download')
+        self.遮罩.hide()
+        self.pbar.hide()
+        self.label.hide()
         box = QMessageBox(QMessageBox.Question, "提示", "升级完毕,确定后打开最新版本,删除当前旧版本！")  
         box.setStandardButtons(QMessageBox.Yes)
         A = box.button(QMessageBox.Yes)
@@ -411,12 +433,13 @@ class 选择窗口(QMainWindow):
         
     def show_progress(self,file_name, total_size, now_size):
         percent = now_size / total_size
-        bar_len = 40  # 进度条长总度
-        bar_str = '>' * round(bar_len * percent) + '=' * round(bar_len * (1 - percent))
-        print('\r{:.2f}%\t[{}] {:.1f}/{:.1f}MB | {} '.format(
-            percent * 100, bar_str, now_size / 1048576, total_size / 1048576, file_name), end='')
-        if total_size == now_size:
-            print('')  # 下载完成换行
+        # bar_len = 40  # 进度条长总度
+        # bar_str = '>' * round(bar_len * percent) + '=' * round(bar_len * (1 - percent))
+        # print('\r{:.2f}%\t[{}] {:.1f}/{:.1f}MB | {} '.format(
+        #     percent * 100, bar_str, now_size / 1048576, total_size / 1048576, file_name), end='')
+        self.pbar.setValue(int(percent*100))
+        # if total_size == now_size:
+        #     print('')  # 下载完成换行
 
 import PyQt5.QtCore as qtc
 if __name__ == '__main__':
@@ -425,7 +448,7 @@ if __name__ == '__main__':
         try:
             #杀老进程
             os.system("taskkill /pid {} -f".format(sys.argv[1]))
-            time.sleep(5)
+            time.sleep(2)
             if "main.py" not in sys.argv[2]:
             # 删除老版本
                 os.remove(sys.argv[2])
