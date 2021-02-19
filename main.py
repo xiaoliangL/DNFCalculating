@@ -260,7 +260,7 @@ class 选择窗口(QMainWindow):
 
         self.scroll = QScrollArea()
         self.scroll.setStyleSheet("QScrollArea {background-color:transparent}")
-        self.scroll.setStyleSheet(滚动条样式)
+        self.scroll.setStyleSheet(游戏滚动条样式模拟)
         self.scroll.viewport().setStyleSheet("background-color:transparent")
         self.scroll.setWidget(self.topFiller)
         self.vbox = QVBoxLayout()
